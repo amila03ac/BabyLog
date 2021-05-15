@@ -1,5 +1,7 @@
-﻿using BabyLog.Data;
+﻿using BabyLog.Contracts;
+using BabyLog.Data;
 using BabyLog.Models;
+using BabyLog.Models.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,25 +15,25 @@ namespace BabyLog.Controllers
     [Route("[controller]")]
     public class EventTypesController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IEventTypeService _eventTypeService;
 
-        public EventTypesController(ApplicationDbContext context)
+        public EventTypesController(IEventTypeService service)
         {
-            _context = context;
+            _eventTypeService = service;
         }
 
         // GET: api/EventTypes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<EventType>>> GetEventTypes()
+        public async Task<ActionResult<IEnumerable<EventTypeDto>>> GetEventTypes()
         {
-            return await _context.EventTypes.ToListAsync();
+            return await _eventTypeService.GetAllAsync();
         }
 
         // GET: api/EventTypes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<EventType>> GetEventType(int id)
+        public async Task<ActionResult<EventTypeDto>> GetEventType(int id)
         {
-            var eventType = await _context.EventTypes.FindAsync(id);
+            var eventType = await _eventTypeService.GetEventTypeAsync(id);
 
             if (eventType == null)
             {
@@ -39,6 +41,6 @@ namespace BabyLog.Controllers
             }
 
             return eventType;
-        }    
+        }
     }
 }
