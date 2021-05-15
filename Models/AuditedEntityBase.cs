@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace BabyLog.Models
 {
@@ -6,8 +7,10 @@ namespace BabyLog.Models
     {
         public int Id { get; set; }
         public DateTime CreatedAtUtc { get; set; }
-        public int CreatedByUserId { get; set; }
-        public DateTime ModifiedAtUtc { get; set; }
-        public int ModifiedByUserId { get; set; }
+        [MaxLength(450)]
+        public string CreatedByUserId { get; set; }
+        public DateTime LastUpdatedAtUtc { get; set; }
+        [MaxLength(450)]
+        public string LastUpdatedByUserId { get; set; }
     }
 }

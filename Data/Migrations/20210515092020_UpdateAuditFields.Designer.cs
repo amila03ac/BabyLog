@@ -4,14 +4,16 @@ using BabyLog.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BabyLog.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210515092020_UpdateAuditFields")]
+    partial class UpdateAuditFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,9 +102,8 @@ namespace BabyLog.Data.Migrations
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedByUserId")
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("CreatedByUserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .HasMaxLength(50)
@@ -115,9 +116,8 @@ namespace BabyLog.Data.Migrations
                     b.Property<DateTime>("LastUpdatedAtUtc")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("LastUpdatedByUserId")
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("LastUpdatedByUserId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -139,9 +139,8 @@ namespace BabyLog.Data.Migrations
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedByUserId")
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("CreatedByUserId")
+                        .HasColumnType("int");
 
                     b.Property<int>("EventTypeId")
                         .HasColumnType("int");
@@ -149,9 +148,8 @@ namespace BabyLog.Data.Migrations
                     b.Property<DateTime>("LastUpdatedAtUtc")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("LastUpdatedByUserId")
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("LastUpdatedByUserId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("OccuredAtUtc")
                         .HasColumnType("datetime2");
@@ -179,16 +177,14 @@ namespace BabyLog.Data.Migrations
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CreatedByUserId")
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("CreatedByUserId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("LastUpdatedAtUtc")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("LastUpdatedByUserId")
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("LastUpdatedByUserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasMaxLength(25)
