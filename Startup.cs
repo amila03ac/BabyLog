@@ -1,11 +1,10 @@
+using BabyLog.Contracts;
 using BabyLog.Data;
 using BabyLog.Models;
+using BabyLog.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -26,6 +25,9 @@ namespace BabyLog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddHttpContextAccessor();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -47,10 +49,14 @@ namespace BabyLog
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            // Add business related services
+            services.AddScoped<ISystemSeedDataService, SystemSeedDataService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ISystemSeedDataService seedDataService)
         {
             if (env.IsDevelopment())
             {
@@ -96,6 +102,8 @@ namespace BabyLog
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+            seedDataService.SeedData().Wait();
         }
     }
 }
