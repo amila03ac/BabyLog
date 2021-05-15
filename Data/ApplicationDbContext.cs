@@ -17,5 +17,10 @@ namespace BabyLog.Data
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
+
+        DbSet<EventType> EventTypes{ get; set; }
+        DbSet<Event> Events { get; set; }
+        DbSet<Baby> Babies { get; set; }
+
     }
 }
