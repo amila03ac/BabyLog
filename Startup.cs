@@ -99,10 +99,11 @@ namespace BabyLog
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
             });
 
+            // Seed initial data for the system
             seedDataService.SeedData().Wait();
         }
     }
