@@ -53,6 +53,7 @@ namespace BabyLog
             // Add business related services
             services.AddScoped<ISystemSeedDataService, SystemSeedDataService>();
             services.AddScoped<IEventTypeService, EventTypeService>();
+            services.AddScoped<IBabyService, BabyService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

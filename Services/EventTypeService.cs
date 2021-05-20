@@ -28,7 +28,6 @@ namespace BabyLog.Services
             var event_type = await _dataContext.EventTypes.FindAsync(id);
 
             return event_type == null ? null : ItemToDTO(event_type);
-
         }
 
         private static EventTypeDto ItemToDTO(EventType eventType) =>
