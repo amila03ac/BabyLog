@@ -1,10 +1,7 @@
 ﻿using BabyLog.Contracts;
-using BabyLog.Data;
-using BabyLog.Models;
 using BabyLog.Models.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
